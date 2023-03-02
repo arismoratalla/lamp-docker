@@ -6,26 +6,29 @@ RUN pecl install redis-5.1.1 \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN apt-get update && apt-get install -y \
-  cron \
-  git \
-  gzip \
-  libbz2-dev \
-  libfreetype6-dev \
-  libicu-dev \
-  libjpeg62-turbo-dev \
-  libmcrypt-dev \
-  libonig-dev \
-  libpng-dev \
-  libsodium-dev \
-  libssh2-1-dev \
-  libxslt1-dev \
-  libzip-dev \
-  lsof \
-  default-mysql-client \
-  vim \
-  procps \
-  zip
+# Install important libraries
+RUN apt-get -y install --fix-missing apt-utils build-essential git curl libcurl3 libcurl3-dev zip openssl
+#RUN apt-get update && apt-get install -y \
+#RUN apt-get update && apt-get install -y \
+  # cron \
+  # git \
+  # gzip \
+  # libbz2-dev \
+  # libfreetype6-dev \
+  # libicu-dev \
+  # libjpeg62-turbo-dev \
+  # libmcrypt-dev \
+  # libonig-dev \
+  # libpng-dev \
+  # libsodium-dev \
+  # libssh2-1-dev \
+  # libxslt1-dev \
+  # libzip-dev \
+  # lsof \
+  # default-mysql-client \
+  # vim \
+  # procps \
+  # zip
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
